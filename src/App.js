@@ -87,6 +87,9 @@ const App = () => {
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
         </Switch>
+        <Route path="/uploaditem" exact>
+            <UploadItem />
+          </Route>
       </div>
     </Router>
   );
