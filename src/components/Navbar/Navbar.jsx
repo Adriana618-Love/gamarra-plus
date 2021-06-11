@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
+import PublishIcon from '@material-ui/icons/Publish';
 import { Link, useLocation } from 'react-router-dom';
 
 import logo from '../../assets/commerce.svg';
@@ -40,7 +41,10 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           <div className={classes.grow} />
           {location.pathname === '/' && (
           <div className={classes.button}>
-            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+            <IconButton component={Link} to="/uploaditem" aria-label="Show cart items" color="inherit">
+                <PublishIcon />
+            </IconButton>
+            <IconButton component={Link} to="/cart" aria-label="Upload items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart />
               </Badge>

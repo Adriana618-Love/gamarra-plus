@@ -38,13 +38,6 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-span {
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  color: red;
-  margin-bottom: 15px;
-}
-
 input {
   background: #f2f2f2;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Navbar, Products, Cart, Checkout } from './components';
+import { Navbar, Products, Cart, Checkout, UploadItem } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
@@ -13,10 +13,20 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-
+    const { data } = await commerce.products.list({
+      limit:1
+    });
+    //console.log(data);
     setProducts(data);
   };
+
+  const addProduct = async (num) => {
+    const { data } = await commerce.products.list({
+      limit:products.length + num
+    });
+    //console.log(data);
+    setProducts(data);
+  }
 
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());
@@ -69,6 +79,7 @@ const App = () => {
     fetchCart();
   }, []);
 
+
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   return (
@@ -86,10 +97,10 @@ const App = () => {
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
-        </Switch>
-        <Route path="/uploaditem" exact>
-            <UploadItem />
+          <Route path="/uploaditem" exact>
+            <UploadItem onaddProduct={addProduct}/>
           </Route>
+        </Switch>
       </div>
     </Router>
   );
