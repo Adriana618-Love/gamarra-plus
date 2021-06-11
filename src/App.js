@@ -22,7 +22,7 @@ const App = () => {
 
   const addProduct = async (num) => {
     const { data } = await commerce.products.list({
-      limit:products.length + num
+      limit:products.length + 1
     });
     //console.log(data);
     setProducts(data);
